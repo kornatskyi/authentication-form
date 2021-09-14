@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
 import "./SignIn.scss";
 
 interface Props {}
@@ -27,9 +29,12 @@ export default function SignIn({}: Props): ReactElement {
       <div className="form-header">
         <h2>Login to you account</h2>
       </div>
-      <form className="signInForm" onSubmit={handleSubmit((data) => {
+      <form
+        className="signInForm"
+        onSubmit={handleSubmit((data) => {
           console.log(data);
-        })}>
+        })}
+      >
         <input
           {...register("email", {
             required: { value: true, message: "Input your email!" },
@@ -62,7 +67,7 @@ export default function SignIn({}: Props): ReactElement {
 
       <div className="form-footer"></div>
       <p>
-        Don't have an account? <a href="/registration">Sign up</a>
+        Don't have an account? <Link to="/signup">Sign up</Link>
       </p>
       <a href="/restore-password"></a>
     </div>

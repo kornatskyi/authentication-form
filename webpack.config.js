@@ -7,6 +7,19 @@ const webpack = require('webpack');
 module.exports = {
     entry: './src/index.tsx',
     mode: 'development',
+    devServer: {
+        historyApiFallback: true, //makes browser keep components after refresh when using react router
+        contentBase: path.join(__dirname, 'dist'),
+        hot: true,
+        port: 3001,
+        //binds to all hosts
+        host: "0.0.0.0"
+    },
+        // output: {
+    //     "filename": "[name].js",
+    //     path: path.resolve(__dirname, 'dist'),
+    //     sourceMapFilename: "[name].js.map",
+    // },
     module: {
         rules: [
             {
@@ -48,11 +61,7 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },
-    output: {
-        "filename": "[name].js",
-        path: path.resolve(__dirname, 'dist'),
-        sourceMapFilename: "[name].js.map",
-    },
+
     devtool: "source-map",
     plugins: [
         new HtmlWebpackPlugin({ template: './src/index.html', minify: false }),

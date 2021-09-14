@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import "../../styles/FormContainer.scss";
 import "./SignUp.scss";
 interface Props {}
@@ -95,7 +96,7 @@ function SignUp({}: Props): ReactElement {
 
       <div className="form-footer"></div>
       <p>
-        Already have an account? <a href="/registration">Log In</a>
+        Already have an account? <Link to="/signin">Log In</Link>
       </p>
     </div>
   );
