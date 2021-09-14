@@ -1,0 +1,61 @@
+@import "./variables";
+
+.formContainer {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+
+    max-width: 400px;
+    min-width: 200px;
+
+    margin       : 20px;
+    border       : 2px solid $color0;
+    border-radius: 7px;
+
+    padding: 15px 25px;
+
+    .form-header {
+        margin         : 15px;
+        width          : 100%;
+        display        : flex;
+        justify-content: center;
+        text-align     : center;
+    }
+
+    .signInForm {
+
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+        width         : 100%;
+
+        input {
+            font-size: 15px;
+            outline  : none;
+
+            margin       : 15px 0;
+            width        : 100%;
+            border       : 2px solid $color0;
+            border-radius: 7px;
+            height       : 45px;
+            padding      : 5px;
+
+            &[type="submit"] {
+                background-color: $color0;
+                color           : $color1;
+                font-weight     : bold;
+                cursor          : pointer;
+            }
+
+            &:focus {
+                box-shadow:
+                    0 0 5px $color2,
+                    0 0 6px $color2,
+                    0 0 7px $color2;
+            }
+        }
+    }
+
+
+
+}
