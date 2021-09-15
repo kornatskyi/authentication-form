@@ -1,0 +1,121 @@
+@import '_variables.scss';
+
+@mixin block-style {
+  background-color: $dark;
+  border: 2px solid $yellow;
+}
+
+@mixin xsUp {
+  @media (min-width: 0) {
+    @content;
+  }
+}
+
+@mixin smUp {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin mdUp {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lgUp {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin xlUp {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+@mixin smDown {
+  @media (max-width: 479px) {
+    @content;
+  }
+}
+
+@mixin mdDown {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin lgDown {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin xlDown {
+  @media (max-width: 1799px) {
+    @content;
+  }
+}
+
+//Fonts
+@mixin h6 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@mixin h5 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@mixin h4 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+@mixin h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+@mixin h2 {
+  font-size: 2.6rem;
+  font-weight: 500;
+}
+
+@mixin h1 {
+  font-size: 4.5rem;
+  font-weight: 500;
+}
+
+@mixin p {
+  font-size: 1rem;
+
+  line-height: 1.5rem;
+}
+
+//Effects
+//Bottom slider
+@mixin bottomSlide {
+  display: inline-block;
+
+  &::after {
+    display: block;
+    content: '';
+    border-bottom: solid 1.5px white;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in;
+    transform-origin: 50% 0%;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+//Burger
+@mixin burgerSvg($color) {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='52'  height='42' viewBox='0 0 52 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Crect x='7' y='9' width='38' height='6.18185' rx='1' fill='#{$color}'/%3E%3Crect x='7' y='19.9092' width='38' height='6.18185' rx='1' fill='#{$color}'/%3E%3Crect x='7' y='30.8184' width='38' height='6.18185' rx='1' fill='#{$color}'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='0' width='52' height='42.0002' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='-2'/%3E%3CfeGaussianBlur stdDeviation='3.5'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.22 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+}

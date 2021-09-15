@@ -1,0 +1,138 @@
+@import '../../styles/mixins';
+
+//For small screens
+@include mdDown {
+  .navbar {
+    .burgerContainer {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      z-index: 99999;
+
+      .burger {
+        cursor: pointer;
+        margin: auto;
+
+        // background-color: black;
+        // background-image: url('../../assets/images//icons/burger.svg');
+        color: black;
+        width: 40px;
+        height: 35px;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .links {
+      z-index: 9999;
+      background-color: black;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(-100%);
+      align-items: center;
+
+      .close {
+        width: 30px;
+        height: 30px;
+        margin-right: auto;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        background-image: url('../../assets/images/icons/times-solid.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &.in {
+        animation: in;
+        animation-duration: 0.2s;
+        transform: translateY(-100%);
+        animation-timing-function: ease-in;
+      }
+
+      &.out {
+        animation: out;
+        animation-duration: 0.2s;
+        transform: translateY(0%);
+        animation-timing-function: ease-out;
+      }
+
+      @keyframes in {
+        from {
+          transform: translateY(0%);
+        }
+
+        to {
+          transform: translateY(-100%);
+        }
+      }
+
+      @keyframes out {
+        from {
+          transform: translateY(-100%);
+        }
+
+        to {
+          transform: translateY(0%);
+        }
+      }
+    }
+
+    a {
+      font-family: 'DosisMedium';
+
+      color: black !important;
+      text-decoration: none;
+      margin: 10px;
+
+      &::after {
+        border-color: black !important;
+      }
+
+      @include h4;
+      @include bottomSlide;
+    }
+  }
+}
+
+//For big screens
+
+@include mdUp {
+  .navbar {
+    padding-top: 30px;
+    position: absolute;
+    width: 100%;
+
+    .links {
+      width: 290px;
+      display: flex;
+      justify-content: space-between;
+      margin-left: auto;
+      margin-right: 5%;
+
+      .close {
+        display: none;
+      }
+
+      a {
+        font-family: 'DosisMedium';
+        color: black;
+        text-decoration: none;
+        @include bottomSlide;
+        @include h5;
+      }
+    }
+
+    .burgerContainer {
+      .burger {
+        display: none;
+      }
+    }
+  }
+}
