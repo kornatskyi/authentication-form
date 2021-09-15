@@ -1,28 +1,46 @@
-import React, { ReactElement } from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import React, { ReactElement } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import axios, { AxiosRequestConfig } from 'axios'
 
-import "./SignIn.scss";
-
-interface Props {}
+import './SignIn.scss'
 
 type FormValues = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
-export default function SignIn({}: Props): ReactElement {
+export default function SignIn(): ReactElement {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>()
 
   const displayFormError = (message?: string): ReactElement | undefined => {
     if (message) {
-      return <p className="error">{message}</p>;
+      return <p className="error">{message}</p>
     }
-  };
+  }
+
+  const axiosRequest = (data: unknown) => {
+    console.log(data)
+
+    const config: AxiosRequestConfig = {
+      method: 'post',
+      url: process.env.API_URL + 'signin',
+
+      data: data,
+    }
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data))
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
 
   return (
     <div className="signInContainer formContainer">
@@ -32,15 +50,16 @@ export default function SignIn({}: Props): ReactElement {
       <form
         className="signInForm"
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+          console.log(data)
+          axiosRequest(data)
         })}
       >
         <input
-          {...register("email", {
-            required: { value: true, message: "Input your email!" },
+          {...register('email', {
+            required: { value: true, message: 'Input your email!' },
             maxLength: {
               value: 30,
-              message: "Field length should be less then 30 chars!",
+              message: 'Field length should be less then 30 chars!',
             },
           })}
           type="text"
@@ -49,11 +68,11 @@ export default function SignIn({}: Props): ReactElement {
         {displayFormError(errors.email?.message)}
 
         <input
-          {...register("password", {
-            required: { value: true, message: "Input your password!" },
+          {...register('password', {
+            required: { value: true, message: 'Input your password!' },
             maxLength: {
               value: 30,
-              message: "Field length should be less then 30 chars!",
+              message: 'Field length should be less then 30 chars!',
             },
           })}
           type="password"
@@ -67,9 +86,9 @@ export default function SignIn({}: Props): ReactElement {
 
       <div className="form-footer"></div>
       <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Don&apos;t have an account? <Link to="/signup">Sign up</Link>
       </p>
-      <a href="/restore-password"></a>
+      <a href="/restore-password">Restore password</a>
     </div>
-  );
+  )
 }

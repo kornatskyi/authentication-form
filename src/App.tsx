@@ -1,10 +1,9 @@
-import React from "react";
-import img from "./assets/images/logo512.png";
-import SignIn from "./components/SIgnIn/SignIn";
-import SignUp from "./components/SignUp/SignUp";
-import UserPage from "./components/UserPage/UserPage";
+import React from 'react'
+import SignIn from './components/SIgnIn/SignIn'
+import SignUp from './components/SignUp/SignUp'
+import UserPage from './components/UserPage/UserPage'
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 export default function App() {
   return (
@@ -30,5 +29,5 @@ export default function App() {
         </Switch>
       </Router>
     </div>
-  );
+  )
 }
