@@ -8,11 +8,12 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   devServer: {
     hot: true,
-    open: true,
-    port: process.env.PORT,
+    // open: true,
+    port: process.env.PORT || 8080,
     //binds to all hosts set 0.0.0.0
     host: process.env.HOST,
     historyApiFallback: true, //makes browser keep components after refresh when using react router
+    clientLogLevel: 'none',
   },
   plugins: [
     new ReactRefreshWebpackPlugin(),

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios, { AxiosRequestConfig } from 'axios'
 
 import './SignIn.scss'
@@ -11,6 +11,8 @@ type FormValues = {
 }
 
 export default function SignIn(): ReactElement {
+  const history = useHistory()
+
   const {
     register,
     handleSubmit,
@@ -24,18 +26,18 @@ export default function SignIn(): ReactElement {
   }
 
   const axiosRequest = (data: unknown) => {
-    console.log(data)
-
     const config: AxiosRequestConfig = {
       method: 'post',
-      url: process.env.API_URL + 'signin',
-
+      url: process.env.API_URL + '/signin',
       data: data,
+      withCredentials: true,
     }
+    console.log(document.cookie)
 
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data))
+        history.push('/userpage')
       })
       .catch(function (error) {
         console.log(error)
@@ -50,7 +52,6 @@ export default function SignIn(): ReactElement {
       <form
         className="signInForm"
         onSubmit={handleSubmit((data) => {
-          console.log(data)
           axiosRequest(data)
         })}
       >
@@ -89,6 +90,7 @@ export default function SignIn(): ReactElement {
         Don&apos;t have an account? <Link to="/signup">Sign up</Link>
       </p>
       <a href="/restore-password">Restore password</a>
+      <Link to="/userpage">user page</Link>
     </div>
   )
 }

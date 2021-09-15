@@ -35,6 +35,7 @@ function SignUp(): ReactElement {
       url: process.env.API_URL + '/users',
 
       data: data,
+      withCredentials: true,
     }
     axios(config)
       .then(function (response) {
