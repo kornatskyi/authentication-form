@@ -108,6 +108,7 @@
     padding-top: 30px;
     position: absolute;
     width: 100%;
+    @include pointerEventNone;
 
     .links {
       width: 290px;
