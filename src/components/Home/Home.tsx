@@ -4,30 +4,12 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 import './Home.scss'
 
-export const Home = () => {
-  const [isAuthorized, setIsAuthorized] = useState(false)
+interface Props {
+  isAuthorized: boolean
+}
 
-  const axiosRequest = () => {
-    const config: AxiosRequestConfig = {
-      method: 'get',
-      url: process.env.API_URL + '/authorize',
-      withCredentials: true,
-    }
-
-    axios(config)
-      .then(function (response: AxiosResponse) {
-        if (response.status === 200) {
-          setIsAuthorized(true)
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-        console.log('Error message: ' + error.message)
-      })
-  }
-
-  axiosRequest()
-
+export const Home = (props: Props) => {
+  const { isAuthorized } = props
   return (
     <div className="homeContainer">
       <h1 className="pageTitle">Home page</h1>

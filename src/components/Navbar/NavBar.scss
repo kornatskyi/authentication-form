@@ -111,11 +111,11 @@
     @include pointerEventNone;
 
     .links {
-      width: 290px;
       display: flex;
-      justify-content: space-between;
+      justify-content: end;
       margin-left: auto;
       margin-right: 5%;
+      width: 50%;
 
       .close {
         display: none;
@@ -127,6 +127,7 @@
         text-decoration: none;
         @include bottomSlide;
         @include h5;
+        margin: 0 10px;
       }
     }
 

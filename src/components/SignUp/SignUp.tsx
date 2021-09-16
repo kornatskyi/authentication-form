@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import React, { ReactElement, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import '../../styles/FormContainer.scss'
 import './SignUp.scss'
 
@@ -11,8 +11,13 @@ type FormValues = {
   password: string
   repeatPassword: string
 }
+interface Props {
+  isAuthorized: boolean
+}
 
-function SignUp(): ReactElement {
+function SignUp(props: Props): ReactElement {
+  const isAuthorized = props.isAuthorized
+  const history = useHistory()
   const {
     register,
     handleSubmit,
@@ -39,13 +44,8 @@ function SignUp(): ReactElement {
     }
     axios(config)
       .then(function (response) {
-        console.log(response)
-
-        console.log(response.status)
-        console.log('shfsdhf')
-
         if (response.status === 200) {
-          console.log('registered')
+          history.push('/signin')
         }
       })
       .catch(function (error) {

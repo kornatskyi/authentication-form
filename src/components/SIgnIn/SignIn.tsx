@@ -1,16 +1,22 @@
-import React, { ReactElement } from 'react'
+import React, { Dispatch, ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
 import axios, { AxiosRequestConfig } from 'axios'
 
 import './SignIn.scss'
 
+interface Props {
+  isAuthorized: boolean
+  setIsAuthorized: Dispatch<boolean>
+}
+
 type FormValues = {
   email: string
   password: string
 }
 
-export default function SignIn(): ReactElement {
+export default function SignIn(props: Props): ReactElement {
+  const { isAuthorized, setIsAuthorized } = props
   const history = useHistory()
 
   const {
@@ -32,11 +38,12 @@ export default function SignIn(): ReactElement {
       data: data,
       withCredentials: true,
     }
-    console.log(document.cookie)
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data))
+        //setting authorized to true when user is signed in
+        setIsAuthorized(true)
+        //redirect to user page
         history.push('/userpage')
       })
       .catch(function (error) {

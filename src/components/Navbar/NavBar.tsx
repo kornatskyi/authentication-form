@@ -5,10 +5,11 @@ import burger from '../../assets/images/icons/burger.svg'
 
 interface Props {
   pageNames: Array<string>
+  isAuthorized: boolean
 }
 
 function NavBar(props: Props) {
-  const { pageNames } = props
+  const { pageNames, isAuthorized } = props
 
   return (
     <div className="navbar">
@@ -16,17 +17,28 @@ function NavBar(props: Props) {
         <img src={burger} className="burger" alt="" />
       </div>
       <div id="links" className={`links on`}>
-        {pageNames.map((pageName, i) => {
-          return (
-            <Link
-              className="nav-link"
-              key={i}
-              to={'/' + pageName.replace(/\W/g, '').toLowerCase()}
-            >
-              {pageName}
-            </Link>
-          )
-        })}
+        {pageNames
+          .filter((pageName) => {
+            if (isAuthorized) {
+              return (
+                isAuthorized &&
+                !(pageName === 'Sign In' || pageName === 'Sign Up')
+              )
+            } else {
+              return !(pageName === 'User page')
+            }
+          })
+          .map((pageName, i) => {
+            return (
+              <Link
+                className="nav-link"
+                key={i}
+                to={'/' + pageName.replace(/\W/g, '').toLowerCase()}
+              >
+                {pageName}
+              </Link>
+            )
+          })}
         <div className="close" role="button" tabIndex={0}></div>
       </div>
     </div>
