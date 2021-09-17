@@ -1,7 +1,7 @@
 import React, { Dispatch } from 'react'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { Link, useHistory } from 'react-router-dom'
-import './UserPage.scss'
+import './Profile.scss'
 interface Props {
   isAuthorized: boolean
   setIsAuthorized: Dispatch<boolean>
@@ -52,7 +52,7 @@ const UserRelatedContent = (props: Props) => {
   }
 
   return (
-    <div className="userPageContainer">
+    <div className="ProfileContainer">
       <h1 className="pageTitle">User page</h1>
       <div className="navigation">
         <button onClick={() => axiosRequest()}>Is authorized?</button>

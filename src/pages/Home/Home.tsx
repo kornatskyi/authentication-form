@@ -16,7 +16,7 @@ export const Home = (props: Props) => {
 
       <div className="linksContainer">
         {isAuthorized ? (
-          <Link to="/userpage">User Page</Link>
+          <Link to="/Profile">User Page</Link>
         ) : (
           <>
             <Link to="/signin">Login</Link>{' '}

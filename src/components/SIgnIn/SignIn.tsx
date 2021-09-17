@@ -44,7 +44,7 @@ export default function SignIn(props: Props): ReactElement {
         //setting authorized to true when user is signed in
         setIsAuthorized(true)
         //redirect to user page
-        history.push('/userpage')
+        history.push('/Profile')
       })
       .catch(function (error) {
         console.log(error)
@@ -97,7 +97,7 @@ export default function SignIn(props: Props): ReactElement {
         Don&apos;t have an account? <Link to="/signup">Sign up</Link>
       </p>
       <a href="/restore-password">Restore password</a>
-      <Link to="/userpage">user page</Link>
+      <Link to="/Profile">user page</Link>
     </div>
   )
 }
