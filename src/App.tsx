@@ -9,7 +9,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import './styles/style.scss'
 
 export default function App() {
-  const [isAuthorized, setIsAuthorized] = useState(false)
+  const [isAuthorized, setIsAuthorized] = useState(true)
 
   // const axiosRequest = () => {
   //   const config: AxiosRequestConfig = {

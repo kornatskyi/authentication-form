@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import './NavBar.scss'
 import burger from '../../assets/images/icons/burger.svg'
-
+import UserButton from '../UserButton/UserButton'
 interface Props {
   pageNames: Array<string>
   isAuthorized: boolean
@@ -73,7 +73,9 @@ function NavBar(props: Props) {
             )
           })}
         {isAuthorized ? (
-          <button onClick={() => signOut()}>Sign out</button>
+          <>
+            <UserButton />
+          </>
         ) : (
           <></>
         )}
