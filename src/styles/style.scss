@@ -3,8 +3,14 @@ header {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
   max-width: 1128px;
-  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 footer {
@@ -18,4 +24,14 @@ button {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  height: 32px;
+  padding: 5px 16px;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+input {
+  padding: 5px 12px;
+  height: 32px;
 }

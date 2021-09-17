@@ -114,10 +114,18 @@
     .links {
       display: flex;
       width: 100%;
-      max-width: 1040px;
-      justify-content: end;
+      max-width: 1128px;
+      justify-content: space-between;
 
-      & > a {
+      .leftLinks,
+      .rightLinks {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+      }
+
+      & > .rightLinks > a,
+      & > .leftLinks > a {
         color: black;
         text-decoration: none;
         font-weight: bold;

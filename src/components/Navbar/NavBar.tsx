@@ -49,36 +49,21 @@ function NavBar(props: Props) {
       >
         <img src={burger} className="burger" alt="" />
       </div>
+
       <div id="links" className={`links on ${toggle}`}>
-        {pageNames
-          .filter((pageName) => {
-            if (isAuthorized) {
-              return (
-                isAuthorized &&
-                !(pageName === 'Sign In' || pageName === 'Sign Up')
-              )
-            } else {
-              return !(pageName === 'User page')
-            }
-          })
-          .map((pageName, i) => {
-            return (
-              <Link
-                className="nav-link"
-                key={i}
-                to={'/' + pageName.replace(/\W/g, '').toLowerCase()}
-              >
-                {pageName}
-              </Link>
-            )
-          })}
-        {isAuthorized ? (
-          <>
+        <div className="leftLinks">
+          <Link to="/home">Home</Link>
+        </div>
+        <div className="rightLinks">
+          {isAuthorized ? (
+            <>
+              <Link to="/signin">Log In</Link>
+              <Link to="/signup">Sign Up</Link>
+            </>
+          ) : (
             <UserButton />
-          </>
-        ) : (
-          <></>
-        )}
+          )}
+        </div>
       </div>
     </div>
   )

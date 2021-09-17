@@ -4,6 +4,7 @@
 .userButtonContainer {
   display: flex;
   position: relative;
+  justify-self: flex-end;
 
   button {
     border: 1px solid black;
@@ -12,7 +13,7 @@
     width: 40px;
     height: 40px;
     display: flex;
-    justify-content: center;
+    padding: 0;
 
     img {
       background-color: white;

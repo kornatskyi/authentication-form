@@ -7,9 +7,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { Home } from './pages/Home/Home'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import './styles/style.scss'
+import UserSettings from './pages/UserSettings/UserSettings'
 
 export default function App() {
-  const [isAuthorized, setIsAuthorized] = useState(true)
+  const [isAuthorized, setIsAuthorized] = useState(false)
 
   // const axiosRequest = () => {
   //   const config: AxiosRequestConfig = {
@@ -60,7 +61,8 @@ export default function App() {
             </Route>
 
             <Route path={['/', '/home']}>
-              <Home isAuthorized={isAuthorized}></Home>
+              {/* <Home isAuthorized={isAuthorized}></Home> */}
+              <UserSettings />
             </Route>
           </Switch>
         </main>
