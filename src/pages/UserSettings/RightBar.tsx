@@ -18,11 +18,11 @@ function Profile(): ReactElement {
       </div>
       <div className="email">
         <h4>Name</h4>
-        <input type="text" value="UserName" />
+        <input type="text" placeholder="UserName" />
       </div>
       <div className="name">
         <h4>Email</h4>
-        <input type="text" value="useremail@gmail.com" />
+        <input type="text" placeholder="useremail@gmail.com" />
       </div>
       <div>
         <button className="update">Update profile</button>

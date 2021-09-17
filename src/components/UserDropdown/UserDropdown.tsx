@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import './UserDropdown.scss'
+import { signout } from '../../apiCalls'
 
 export default function UserDropdown(): ReactElement {
   return (
@@ -9,7 +10,16 @@ export default function UserDropdown(): ReactElement {
         <Link to="/">Settings</Link>
       </div>
       <div className="logOut">
-        <Link to="/">Log Out</Link>
+        <Link
+          to="/"
+          onClick={() => {
+            console.log('click')
+
+            signout()
+          }}
+        >
+          Log Out
+        </Link>
       </div>
     </div>
   )

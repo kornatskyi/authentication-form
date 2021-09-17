@@ -11,15 +11,11 @@
 
   max-width: 400px;
 
-  margin: auto auto;
   border: 2px solid $color0;
   border-radius: 7px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 25px;
 
-  position: absolute;
+  padding: 15px 25px;
+  margin-top: 10%;
 
   .form-header {
     margin: 15px;

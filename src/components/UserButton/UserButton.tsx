@@ -11,7 +11,12 @@ const UserButton = () => {
   return (
     <div
       className="userButtonContainer"
-      onBlur={() => setDropdownToggle(false)}
+      //wrong way to to this, should be fixed (remove timeout)
+      onBlur={() =>
+        setTimeout(() => {
+          setDropdownToggle(false)
+        }, 100)
+      }
     >
       <button
         onClick={() => {

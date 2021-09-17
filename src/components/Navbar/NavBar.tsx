@@ -1,9 +1,11 @@
-import React, { Dispatch, useState } from 'react'
+import React, { Dispatch, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import './NavBar.scss'
 import burger from '../../assets/images/icons/burger.svg'
 import UserButton from '../UserButton/UserButton'
+import { AuthorizedContext } from '../../App'
+
 interface Props {
   pageNames: Array<string>
   isAuthorized: boolean
@@ -11,27 +13,10 @@ interface Props {
 }
 
 function NavBar(props: Props) {
-  const { pageNames, isAuthorized, setIsAuthorized } = props
+  const { pageNames, setIsAuthorized } = props
   const [toggle, setToggle] = useState('')
 
-  const signOut = () => {
-    const config: AxiosRequestConfig = {
-      method: 'get',
-      url: process.env.API_URL + '/signout',
-      withCredentials: true,
-    }
-
-    axios(config)
-      .then(function (response: AxiosResponse) {
-        if (response.status === 200) {
-          console.log('You signed out')
-          setIsAuthorized(false)
-        }
-      })
-      .catch(function (error) {
-        console.log('Error message: ' + error.message)
-      })
-  }
+  const isAuthorized = useContext(AuthorizedContext)
 
   return (
     <div
@@ -56,12 +41,12 @@ function NavBar(props: Props) {
         </div>
         <div className="rightLinks">
           {isAuthorized ? (
+            <UserButton />
+          ) : (
             <>
               <Link to="/signin">Log In</Link>
               <Link to="/signup">Sign Up</Link>
             </>
-          ) : (
-            <UserButton />
           )}
         </div>
       </div>
