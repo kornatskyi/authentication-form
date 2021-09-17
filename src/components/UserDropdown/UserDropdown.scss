@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.userDropdownContainer {
+  position: absolute;
+  background-color: $container-background;
+  top: 52px;
+  border: $container-border;
+  border-radius: $border-radius 4px $border-radius $border-radius;
+  left: auto;
+  right: 0;
+
+  div {
+    a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      align-self: center;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    padding: 10px;
+  }
+
+  .logOut {
+    border-top: 1px solid $color01;
+  }
+}
