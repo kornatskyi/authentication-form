@@ -1,54 +1,23 @@
-import React, { Dispatch, ReactElement } from 'react'
+import React, { Dispatch, ReactElement, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
-import axios, { AxiosRequestConfig } from 'axios'
-
 import './SignIn.scss'
+import { signIn } from '../../apiCalls'
+import { LoginCredentials } from '../../utils/interfaces'
 
-interface Props {
-  isAuthorized: boolean
-  setIsAuthorized: Dispatch<boolean>
-}
-
-type FormValues = {
-  email: string
-  password: string
-}
-
-export default function SignIn(props: Props): ReactElement {
-  const { isAuthorized, setIsAuthorized } = props
+export default function SignIn(): ReactElement {
   const history = useHistory()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>()
+  } = useForm<LoginCredentials>()
 
   const displayFormError = (message?: string): ReactElement | undefined => {
     if (message) {
       return <p className="error">{message}</p>
     }
-  }
-
-  const axiosRequest = (data: unknown) => {
-    const config: AxiosRequestConfig = {
-      method: 'post',
-      url: process.env.API_URL + '/signin',
-      data: data,
-      withCredentials: true,
-    }
-
-    axios(config)
-      .then(function (response) {
-        //setting authorized to true when user is signed in
-        setIsAuthorized(true)
-        //redirect to user page
-        history.push('/Profile')
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
   }
 
   return (
@@ -59,7 +28,21 @@ export default function SignIn(props: Props): ReactElement {
       <form
         className="signInForm"
         onSubmit={handleSubmit((data) => {
-          axiosRequest(data)
+          signIn(data)
+            .then((res) => {
+              if (res.status === 200) {
+                history.push('/home')
+                console.log('You are Signed In')
+              } else {
+                console.log('Status ', res.status)
+
+                console.log('Something went wrong')
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+              console.log('Error when signing in')
+            })
         })}
       >
         <input

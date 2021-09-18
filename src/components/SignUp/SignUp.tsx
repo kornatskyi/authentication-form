@@ -2,28 +2,19 @@ import axios, { AxiosRequestConfig } from 'axios'
 import React, { ReactElement, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
+import { signUp } from '../../apiCalls'
 import '../../styles/FormContainer.scss'
+import { RegistrationCredentials } from '../../utils/interfaces'
 import './SignUp.scss'
 
-type FormValues = {
-  email: string
-  name: string
-  password: string
-  repeatPassword: string
-}
-interface Props {
-  isAuthorized: boolean
-}
-
-function SignUp(props: Props): ReactElement {
-  const isAuthorized = props.isAuthorized
+function SignUp(): ReactElement {
   const history = useHistory()
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormValues>()
+  } = useForm<RegistrationCredentials>()
 
   const displayFormError = (message?: string): ReactElement | undefined => {
     if (message) {
@@ -34,26 +25,6 @@ function SignUp(props: Props): ReactElement {
   const password = useRef({})
   password.current = watch('password', '')
 
-  const axiosRequest = (data: unknown) => {
-    const config: AxiosRequestConfig = {
-      method: 'post',
-      url: process.env.API_URL + '/users',
-
-      data: data,
-      withCredentials: true,
-    }
-    axios(config)
-      .then(function (response) {
-        if (response.status === 200) {
-          history.push('/signin')
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-        console.log('Error message: ' + error.message)
-      })
-  }
-
   return (
     <div className="signUpContainer formContainer">
       <div className="form-header">
@@ -62,9 +33,13 @@ function SignUp(props: Props): ReactElement {
       <form
         className="signUpForm"
         onSubmit={handleSubmit((data) => {
-          console.log(data)
-
-          axiosRequest(data)
+          signUp(data)
+            .then((res) => {
+              history.push('/home')
+            })
+            .catch((err) => {
+              console.log(err)
+            })
         })}
       >
         <input

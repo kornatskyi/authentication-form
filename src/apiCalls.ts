@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { LoginCredentials, RegistrationCredentials } from './utils/interfaces'
 
 export const authorize = async () => {
   const config: AxiosRequestConfig = {
@@ -8,13 +9,6 @@ export const authorize = async () => {
   }
 
   return axios(config)
-    .then(function (response: AxiosResponse) {
-      return true
-    })
-    .catch(function (error) {
-      console.log('Not authorized')
-      return false
-    })
 }
 
 export const signout = async () => {
@@ -31,4 +25,26 @@ export const signout = async () => {
     .catch(function (error) {
       console.log('Error when signing out')
     })
+}
+
+export const signIn = async (data: LoginCredentials) => {
+  const config: AxiosRequestConfig = {
+    method: 'post',
+    url: process.env.API_URL + '/signin',
+    data: data,
+    withCredentials: true,
+  }
+
+  return axios(config)
+}
+
+export const signUp = (registrationCredentials: RegistrationCredentials) => {
+  const config: AxiosRequestConfig = {
+    method: 'post',
+    url: process.env.API_URL + '/users',
+
+    data: registrationCredentials,
+    withCredentials: true,
+  }
+  return axios(config)
 }

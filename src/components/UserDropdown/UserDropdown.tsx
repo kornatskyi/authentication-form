@@ -7,7 +7,7 @@ export default function UserDropdown(): ReactElement {
   return (
     <div className="userDropdownContainer">
       <div>
-        <Link to="/">Settings</Link>
+        <Link to="/settings">Settings</Link>
       </div>
       <div className="logOut">
         <Link
