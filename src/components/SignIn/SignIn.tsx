@@ -4,9 +4,12 @@ import { Link, useHistory } from 'react-router-dom'
 import './SignIn.scss'
 import { signIn } from '../../apiCalls'
 import { LoginCredentials } from '../../utils/interfaces'
+import { AuthorizedContext } from '../../App'
 
 export default function SignIn(): ReactElement {
   const history = useHistory()
+
+  const { isAuthorized, setIsAuthorized } = useContext(AuthorizedContext)
 
   const {
     register,
@@ -31,9 +34,12 @@ export default function SignIn(): ReactElement {
           signIn(data)
             .then((res) => {
               if (res.status === 200) {
+                setIsAuthorized(true)
                 history.push('/home')
                 console.log('You are Signed In')
               } else {
+                setIsAuthorized(false)
+
                 console.log('Status ', res.status)
 
                 console.log('Something went wrong')

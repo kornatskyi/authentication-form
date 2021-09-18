@@ -16,7 +16,7 @@ function NavBar(props: Props) {
   const { pageNames, setIsAuthorized } = props
   const [toggle, setToggle] = useState('')
 
-  const isAuthorized = useContext(AuthorizedContext)
+  const { isAuthorized } = useContext(AuthorizedContext)
 
   return (
     <div

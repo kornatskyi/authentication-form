@@ -1,18 +1,17 @@
-import React, { ReactComponentElement, ReactElement , useContext } from 'react'
+import React, { ReactElement, useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { AuthorizedContext } from '../../App'
 
-export default function ProtectedRoute(props: any): ReactElement {
-  const Component = props.component
-
-  const isAuthorized = useContext(AuthorizedContext)
-
+export default function PrivateRoute(props: any): ReactElement {
   console.log(props)
-  console.log(isAuthorized)
+
+  const { Component, path } = props
+
+  const { isAuthorized } = useContext(AuthorizedContext)
 
   return (
     <Route
-      path={props.path}
+      path={path}
       render={(props) => {
         if (isAuthorized) {
           return <Component {...props} />

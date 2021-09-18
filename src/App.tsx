@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Dispatch } from 'react'
 import SignIn from './components/SignIn/SignIn'
 import SignUp from './components/SignUp/SignUp'
 import NavBar from './components/Navbar/NavBar'
@@ -8,13 +8,20 @@ import './styles/style.scss'
 import UserSettings from './pages/UserSettings/UserSettings'
 import { authorize } from './apiCalls'
 
-import ProtectedRoute from './utils/UtilComponents/ProtectedRoute'
+import PrivateRoute from './utils/UtilComponents/PrivateRoute'
 
-export const AuthorizedContext = React.createContext({})
+export let AuthorizedContext: React.Context<{
+  isAuthorized: any
+  setIsAuthorized: any
+}>
 
 export default function App() {
   const [isAuthorized, setIsAuthorized] = useState(false)
-  console.log()
+
+  AuthorizedContext = React.createContext({
+    isAuthorized: isAuthorized,
+    setIsAuthorized: setIsAuthorized,
+  })
 
   //Check if user is authorized on App load
   useEffect(() => {
@@ -32,7 +39,7 @@ export default function App() {
   }, [])
 
   return (
-    <AuthorizedContext.Provider value={isAuthorized}>
+    <AuthorizedContext.Provider value={{ isAuthorized, setIsAuthorized }}>
       <div className="appContainer">
         <header>
           <NavBar
@@ -49,14 +56,14 @@ export default function App() {
             <Route path="/route2">
               <h1>Route 2</h1>
             </Route>
-            {/* <Route path="/signin">
+            <Route path="/signin">
               <SignIn />
             </Route>
             <Route path="/signup">
               <SignUp />
             </Route>
- */}
-            <ProtectedRoute component={UserSettings} path="/settings" />
+
+            <PrivateRoute Component={UserSettings} path="/settings" />
 
             <Route path={['/', '/home']}>
               <Home isAuthorized={isAuthorized}></Home>

@@ -19,12 +19,6 @@ export const signout = async () => {
   }
 
   return axios(config)
-    .then(function (response: AxiosResponse) {
-      console.log("You've been sign out")
-    })
-    .catch(function (error) {
-      console.log('Error when signing out')
-    })
 }
 
 export const signIn = async (data: LoginCredentials) => {
