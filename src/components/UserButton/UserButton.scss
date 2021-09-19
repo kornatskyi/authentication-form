@@ -7,18 +7,29 @@
   justify-self: flex-end;
 
   button {
-    border: 1px solid black;
-    border-radius: 100px;
     overflow: hidden;
     width: 40px;
     height: 40px;
     display: flex;
     padding: 0;
+    flex-direction: column;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 
     img {
       background-color: white;
-      width: 40px;
-      height: 40px;
+      height: 90%;
+      width: 24px;
+      height: 24px;
+    }
+
+    span {
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

@@ -11,9 +11,6 @@
 
   max-width: 400px;
 
-  border: 2px solid $color0;
-  border-radius: 7px;
-
   padding: 15px 25px;
   margin-top: 10%;
 
@@ -36,8 +33,6 @@
       outline: none;
       margin: 15px 0 5px 0;
       width: 100%;
-      border: 2px solid $color0;
-      border-radius: 7px;
       height: 45px;
       padding: 5px;
 
@@ -50,7 +45,11 @@
       }
 
       &:focus {
-        box-shadow: 0 0 5px $color2, 0 0 6px $color2, 0 0 7px $color2;
+        box-shadow: inset 0 0 3px $color04, 0 0 4px $color04, 0 0 5px $color04;
+      }
+
+      &.error {
+        box-shadow: inset 0 0 3px $error, 0 0 4px $error, 0 0 5px $error;
       }
     }
   }

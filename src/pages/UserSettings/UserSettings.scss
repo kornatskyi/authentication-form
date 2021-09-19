@@ -19,8 +19,10 @@
 
       &.active {
         border: $container-border;
+        box-shadow: $box-shadow;
         border-radius: $border-radius;
         background-color: $container-background;
+        box-shadow: $box-shadow;
       }
     }
 
@@ -31,6 +33,7 @@
     margin-left: 10px;
     width: 70%;
     border: $container-border;
+    box-shadow: $box-shadow;
     border-radius: $border-radius;
     background-color: $container-background;
 
@@ -51,24 +54,17 @@
         }
 
         input {
-          background-color: white;
-          border: $input-border;
-          border-radius: $border-radius;
           width: 100%;
           font-size: $normal-font;
         }
 
         .update {
           background-color: $success-color;
-          border: $input-border;
-          border-radius: $border-radius;
           color: $color1;
         }
 
         .delete {
           background-color: rgb(211, 211, 211);
-          border: $input-border;
-          border-radius: $border-radius;
           color: #da3633;
 
           &:hover {

@@ -1,3 +1,5 @@
+@import './variables';
+
 header {
   height: 50px;
 }
@@ -35,4 +37,21 @@ button {
 input {
   padding: 5px 12px;
   height: 32px;
+  border: none;
+  border-radius: $input-border-radius;
+
+  box-shadow: $input-box-shadow;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $color04;
+  }
+
+  &:active {
+    background-color: $color09;
+  }
+
+  &:hover {
+    box-shadow: inset 0 0 0 2px $color04;
+  }
 }

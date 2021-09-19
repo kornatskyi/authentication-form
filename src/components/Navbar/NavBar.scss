@@ -6,6 +6,7 @@
     z-index: 99999;
     background-color: $container-background;
     border-bottom: $container-border;
+    box-shadow: $box-shadow;
     display: flex;
     height: 50px;
     position: absolute;
@@ -106,6 +107,7 @@
     height: 50px;
     background-color: $container-background;
     border-bottom: $container-border;
+    box-shadow: $box-shadow;
     display: flex;
     justify-content: center;
     @include pointerEventNone;

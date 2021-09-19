@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, useContext } from 'react'
+import React, { Dispatch, ReactElement, useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
 import './SignIn.scss'
@@ -7,6 +7,7 @@ import { LoginCredentials } from '../../utils/interfaces'
 import { AppContext } from '../../App'
 
 export default function SignIn(): ReactElement {
+  const [errorClass, setErrorClass] = useState('')
   const history = useHistory()
 
   const { isAuthorized, setIsAuthorized } = useContext(AppContext)
@@ -35,7 +36,6 @@ export default function SignIn(): ReactElement {
             .then((res) => {
               if (res.status === 200) {
                 setIsAuthorized(true)
-                history.push('/home')
                 console.log('You are Signed In')
               } else {
                 setIsAuthorized(false)
@@ -49,9 +49,13 @@ export default function SignIn(): ReactElement {
               console.log(err)
               console.log('Error when signing in')
             })
+            .finally(() => {
+              history.push('/home')
+            })
         })}
       >
         <input
+          className={`${errorClass} `}
           {...register('email', {
             required: { value: true, message: 'Input your email!' },
             maxLength: {
@@ -65,6 +69,7 @@ export default function SignIn(): ReactElement {
         {displayFormError(errors.email?.message)}
 
         <input
+          className={`${errorClass} password`}
           {...register('password', {
             required: { value: true, message: 'Input your password!' },
             maxLength: {
@@ -73,12 +78,15 @@ export default function SignIn(): ReactElement {
             },
           })}
           type="password"
-          className="password"
           placeholder="Password"
         />
         {displayFormError(errors.password?.message)}
 
-        <input type="submit" className="button" value="Sign In" />
+        <input
+          className={`${errorClass} button`}
+          type="submit"
+          value="Sign In"
+        />
       </form>
 
       <div className="form-footer"></div>

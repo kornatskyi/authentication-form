@@ -12,18 +12,9 @@ export const Home = (props: Props) => {
   const { isAuthorized } = props
   return (
     <div className="homeContainer">
-      <h1 className="pageTitle">Home page</h1>
+      <h1 className="pageTitle">Description</h1>
 
-      <div className="linksContainer">
-        {isAuthorized ? (
-          <Link to="/Profile">User Page</Link>
-        ) : (
-          <>
-            <Link to="/signin">Login</Link>{' '}
-            <Link to="/signup">Registration</Link>
-          </>
-        )}
-      </div>
+      <p>This is a simple boilerplate of a user Authentication setup</p>
     </div>
   )
 }
