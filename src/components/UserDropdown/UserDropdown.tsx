@@ -2,10 +2,10 @@ import React, { ReactElement, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './UserDropdown.scss'
 import { signout } from '../../apiCalls'
-import { AuthorizedContext } from '../../App'
+import { AppContext } from '../../App'
 
 export default function UserDropdown(): ReactElement {
-  const { setIsAuthorized } = useContext(AuthorizedContext)
+  const { setIsAuthorized } = useContext(AppContext)
   return (
     <div className="userDropdownContainer">
       <div>

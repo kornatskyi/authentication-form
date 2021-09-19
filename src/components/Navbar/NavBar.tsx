@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import './NavBar.scss'
 import burger from '../../assets/images/icons/burger.svg'
 import UserButton from '../UserButton/UserButton'
-import { AuthorizedContext } from '../../App'
+import { AppContext } from '../../App'
 
 interface Props {
   pageNames: Array<string>
@@ -16,7 +16,7 @@ function NavBar(props: Props) {
   const { pageNames, setIsAuthorized } = props
   const [toggle, setToggle] = useState('')
 
-  const { isAuthorized } = useContext(AuthorizedContext)
+  const { isAuthorized } = useContext(AppContext)
 
   return (
     <div

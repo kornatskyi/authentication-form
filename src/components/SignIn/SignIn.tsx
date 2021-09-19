@@ -4,12 +4,12 @@ import { Link, useHistory } from 'react-router-dom'
 import './SignIn.scss'
 import { signIn } from '../../apiCalls'
 import { LoginCredentials } from '../../utils/interfaces'
-import { AuthorizedContext } from '../../App'
+import { AppContext } from '../../App'
 
 export default function SignIn(): ReactElement {
   const history = useHistory()
 
-  const { isAuthorized, setIsAuthorized } = useContext(AuthorizedContext)
+  const { isAuthorized, setIsAuthorized } = useContext(AppContext)
 
   const {
     register,
