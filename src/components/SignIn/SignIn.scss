@@ -1,4 +1,17 @@
 @import '../../styles/variables';
 
 .signInContainer {
+  .forgotPassword {
+    color: #1a0dab;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: red;
+      text-decoration: underline;
+    }
+  }
 }

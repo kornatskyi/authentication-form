@@ -52,3 +52,16 @@ export const isEmailConfirmed = () => {
   }
   return axios(config)
 }
+
+export const forgotPassword = (email: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'post',
+    url: process.env.API_URL + '/forgot-password',
+    data: {
+      email: email,
+    },
+    withCredentials: true,
+  }
+
+  return axios(config)
+}

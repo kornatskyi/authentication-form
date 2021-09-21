@@ -27,7 +27,7 @@ function SignUp(): ReactElement {
   const password = useRef({})
   password.current = watch('password', '')
 
-  if (true) {
+  if (isRegistered) {
     return (
       <div className="successfullyAuthenticated formContainer">
         <div>

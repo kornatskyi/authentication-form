@@ -11,6 +11,7 @@ import LoadingPage from './pages/LoadingPage/LoadingPage'
 
 import PrivateRoute from './utils/UtilComponents/PrivateRoute'
 import Page404 from './pages/Page404/Page404'
+import RestorePassword from './components/RestorePassword/RestorePassword'
 
 //Create let variable for being able to set up values inside the component body.
 export let AppContext: React.Context<{
@@ -61,6 +62,11 @@ export default function App() {
               <PrivateRoute exact Component={UserSettings} path="/settings" />
 
               <Route exact path="/signin" component={SignIn} />
+              <Route
+                exact
+                path="/restore-password"
+                component={RestorePassword}
+              />
 
               <Route exact path="/signup" component={SignUp} />
 
