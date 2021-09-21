@@ -35,9 +35,19 @@ export const signIn = async (data: LoginCredentials) => {
 export const signUp = (registrationCredentials: RegistrationCredentials) => {
   const config: AxiosRequestConfig = {
     method: 'post',
-    url: process.env.API_URL + '/users',
+    url: process.env.API_URL + '/signup',
 
     data: registrationCredentials,
+    withCredentials: true,
+  }
+  return axios(config)
+}
+
+export const isEmailConfirmed = () => {
+  const config: AxiosRequestConfig = {
+    method: 'post',
+    url: process.env.API_URL + '/isconfirmed',
+
     withCredentials: true,
   }
   return axios(config)

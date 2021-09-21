@@ -8,6 +8,9 @@ import { AppContext } from '../../App'
 
 export default function SignIn(): ReactElement {
   const [errorClass, setErrorClass] = useState('')
+  const [wrongCredentialsMessage, setWrongCredentialsMessage] = useState(
+    (() => <p></p>)()
+  )
   const history = useHistory()
 
   const { isAuthorized, setIsAuthorized } = useContext(AppContext)
@@ -37,6 +40,7 @@ export default function SignIn(): ReactElement {
               if (res.status === 200) {
                 setIsAuthorized(true)
                 console.log('You are Signed In')
+                history.push('/home')
               } else {
                 setIsAuthorized(false)
 
@@ -46,11 +50,11 @@ export default function SignIn(): ReactElement {
               }
             })
             .catch((err) => {
+              setWrongCredentialsMessage(
+                (() => <p className="error">Wrong email or password</p>)()
+              )
               console.log(err)
               console.log('Error when signing in')
-            })
-            .finally(() => {
-              history.push('/home')
             })
         })}
       >
@@ -81,7 +85,7 @@ export default function SignIn(): ReactElement {
           placeholder="Password"
         />
         {displayFormError(errors.password?.message)}
-
+        {wrongCredentialsMessage}
         <input
           className={`${errorClass} button`}
           type="submit"
