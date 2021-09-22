@@ -65,3 +65,16 @@ export const forgotPassword = (email: string) => {
 
   return axios(config)
 }
+
+export const restorePassword = (password: string, token: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'post',
+    url: process.env.API_URL + '/reset-password-by-link',
+    data: {
+      password: password,
+      token: token,
+    },
+    withCredentials: true,
+  }
+  return axios(config)
+}

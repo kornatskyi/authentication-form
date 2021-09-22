@@ -1,8 +1,14 @@
-import React, { Dispatch, ReactElement, useContext, useState } from 'react'
+import React, {
+  Dispatch,
+  ReactElement,
+  useContext,
+  useRef,
+  useState,
+} from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory } from 'react-router-dom'
-import { signIn } from '../../apiCalls'
-import { LoginCredentials } from '../../utils/interfaces'
+import { Link, useHistory, useParams } from 'react-router-dom'
+import { restorePassword, signIn } from '../../apiCalls'
+import { RestorePasswordCredentials } from '../../utils/interfaces'
 import { AppContext } from '../../App'
 
 export default function RestorePassword() {
@@ -12,19 +18,26 @@ export default function RestorePassword() {
   )
   const history = useHistory()
 
-  const { isAuthorized, setIsAuthorized } = useContext(AppContext)
+  const [isChanged, setIsChanged] = useState(false)
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<LoginCredentials>()
+  } = useForm<RestorePasswordCredentials>()
 
   const displayFormError = (message?: string): ReactElement | undefined => {
     if (message) {
       return <p className="error">{message}</p>
     }
   }
+
+  //get token from a url parameter
+  const { token } = useParams<{ token: string }>()
+
+  const password = useRef({})
+  password.current = watch('password', '')
   return (
     <div className="restorePasswordContainer formContainer">
       <div className="form-header">
@@ -33,14 +46,13 @@ export default function RestorePassword() {
       <form
         className="signInForm"
         onSubmit={handleSubmit((data) => {
-          signIn(data)
+          restorePassword(data.password, token)
             .then((res) => {
               if (res.status === 200) {
-                setIsAuthorized(true)
-                console.log('You are Signed In')
-                history.push('/home')
+                setIsChanged(true)
+                console.log('Password has been reset')
               } else {
-                setIsAuthorized(false)
+                setIsChanged(false)
 
                 console.log('Status ', res.status)
 
@@ -52,23 +64,42 @@ export default function RestorePassword() {
                 (() => <p className="error">Wrong email or password</p>)()
               )
               console.log(err)
-              console.log('Error when signing in')
+              console.log(err.message)
+
+              console.log('Error when resetting password ')
             })
         })}
       >
         <input
-          className={`${errorClass} `}
-          {...register('email', {
-            required: { value: true, message: 'Input your email!' },
+          {...register('password', {
+            required: { value: true, message: 'Choose your password' },
             maxLength: {
               value: 30,
               message: 'Field length should be less then 30 chars!',
             },
           })}
-          type="text"
-          placeholder="Email"
+          type="password"
+          className="password"
+          placeholder="Password"
         />
-        {displayFormError(errors.email?.message)}
+        {displayFormError(errors.password?.message)}
+
+        <input
+          {...register('repeatPassword', {
+            required: { value: true, message: 'Repeat your password' },
+            maxLength: {
+              value: 30,
+              message: 'Field length should be less then 30 chars!',
+            },
+            validate: (value) =>
+              value === password.current || 'The passwords do not match',
+          })}
+          type="password"
+          className="password"
+          placeholder="Repeat password"
+        />
+        {displayFormError(errors.repeatPassword?.message)}
+
         <input
           className={`${errorClass} button`}
           type="submit"

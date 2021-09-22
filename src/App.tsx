@@ -61,10 +61,9 @@ export default function App() {
             <Switch>
               <PrivateRoute exact Component={UserSettings} path="/settings" />
 
-              <Route exact path="/signin" component={SignIn} />
+              <Route path="/signin" component={SignIn} />
               <Route
-                exact
-                path="/restore-password"
+                path="/restore-password/:token"
                 component={RestorePassword}
               />
 

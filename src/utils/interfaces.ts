@@ -9,3 +9,8 @@ export interface RegistrationCredentials {
   password: string
   repeatPassword: string
 }
+
+export interface RestorePasswordCredentials {
+  password: string
+  repeatPassword: string
+}

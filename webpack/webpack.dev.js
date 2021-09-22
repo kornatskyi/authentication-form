@@ -13,7 +13,9 @@ module.exports = {
     port: process.env.PORT || 8080,
     //binds to all hosts set 0.0.0.0
     host: process.env.HOST,
-    historyApiFallback: true, //makes browser keep components after refresh when using react router
+    historyApiFallback: {
+      disableDotRule: true //allows contain dots "." in url
+    }, //makes browser keep components after refresh when using react router
     clientLogLevel: 'none',
   },
   plugins: [
