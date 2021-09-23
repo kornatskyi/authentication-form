@@ -40,6 +40,11 @@ module.exports = {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
       },
+      // @svgr/webpack loads svgs as react components through import syntax
+      // {
+      //   test: /\.svg$/,
+      //   use: ['babel-loader', '@svgr/webpack']
+      // }
     ],
   },
   output: {
