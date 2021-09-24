@@ -21,3 +21,8 @@ export interface UpdatingCredentials {
   password: string
   repeatPassword: string
 }
+
+export interface UserData {
+  email: string
+  name: string
+}

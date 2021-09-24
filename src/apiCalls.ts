@@ -53,6 +53,16 @@ export const isEmailConfirmed = () => {
   return axios(config)
 }
 
+export const requestEmailConfirmationLink = () => {
+  const config: AxiosRequestConfig = {
+    method: 'get',
+    url: process.env.API_URL + '/request-confirmation-link',
+
+    withCredentials: true,
+  }
+  return axios(config)
+}
+
 export const forgotPassword = (email: string) => {
   const config: AxiosRequestConfig = {
     method: 'post',
@@ -83,6 +93,15 @@ export const updateCredentials = (credentials: UpdatingCredentials) => {
     method: 'put',
     url: process.env.API_URL + '/update',
     data: credentials,
+    withCredentials: true,
+  }
+  return axios(config)
+}
+
+export const deleteUser = () => {
+  const config: AxiosRequestConfig = {
+    method: 'delete',
+    url: process.env.API_URL + '/delete',
     withCredentials: true,
   }
   return axios(config)

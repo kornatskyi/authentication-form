@@ -1,9 +1,9 @@
-import React, { ReactElement, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { RegistrationCredentials } from '../../utils/interfaces'
 import { emailValidation, nameValidation, passwordValidation, repeatPasswordValidation } from '../../utils/updateInputValidation'
-import { signUp, updateCredentials } from '../../apiCalls'
+import { deleteUser, isEmailConfirmed, requestEmailConfirmationLink, signUp, updateCredentials } from '../../apiCalls'
 import LoadingElement from '../../components/LoadingElement/LoadingElement'
 
 export default function RightBar(): ReactElement {
@@ -15,13 +15,28 @@ export default function RightBar(): ReactElement {
 }
 
 function Profile(): ReactElement {
-  const [isConfirmed, setIsConfirmed] = useState(false)
+  const [isConfirmed, setIsConfirmed] = useState(true)
 
-  const [errorMessage, setErrorMessage] = useState('Default error')
-  const [successMessage, setSuccessMessage] = useState('Default success')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  //React Hook Form methods
+  useEffect(() => {
+    isEmailConfirmed()
+      .then((res) => {
+        if (res.data === true) {
+          setIsConfirmed(true)
+        } else {
+          setIsConfirmed(false)
+        }
+      })
+      .catch((err) => {
+        console.error('Something went wrong!')
+        console.log(err.response.statusText)
+      })
+  }, [])
+
+  //React Hook Form method
   const {
     register,
     handleSubmit,
@@ -56,6 +71,30 @@ function Profile(): ReactElement {
       })
   }
 
+  const handleConfirmationLinkRequest = (e: any) => {
+    e.preventDefault()
+    requestEmailConfirmationLink()
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err.response.statusText)
+      })
+  }
+
+  const handleDeleteButton = (e: any) => {
+    e.preventDefault()
+
+    deleteUser()
+      .then((res) => {
+        console.log(res.data)
+        window.location.reload()
+      })
+      .catch((err) => {
+        console.log(err.response.statusText)
+      })
+  }
+
   return (
     <div className="profileContainer">
       <div className="avatar">
@@ -68,7 +107,7 @@ function Profile(): ReactElement {
           <></>
         ) : (
           <div className="warning">
-            Email isn&apos;t confirmed <button>send confirmation link</button>{' '}
+            Email isn&apos;t confirmed <button onClick={handleConfirmationLinkRequest}>send confirmation link</button>{' '}
           </div>
         )}
         {displayFormError(errors.email?.message)}
@@ -89,7 +128,7 @@ function Profile(): ReactElement {
         </div>
       </form>
       <div>
-        <button disabled={isLoading} className="button delete">
+        <button disabled={isLoading} className="button delete" onClick={handleDeleteButton}>
           Delete profile {isLoading ? <LoadingElement /> : <></>}
         </button>
       </div>
