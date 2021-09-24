@@ -17,17 +17,19 @@ $warning-color: rgb(197, 163, 27);
 
 $error: red;
 
+$disabled-color: grey;
+
+//Fonts
+$normal-font: 14px;
+//Font colors
+$text-light: white;
+$text-dark: black;
+
+//Container appearance
 $container-border: none;
 $border-radius: 8px;
 $input-border: 1px solid $color0;
 $container-background: #ffffff;
-
 $input-border-radius: 0.4em;
 $input-box-shadow: inset 0 0 0 1px $color06;
-
-$text-light: white;
-$text-dark: black;
-
-$normal-font: 14px;
-
 $box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08), 0px 1px 2px rgba(0, 0, 0, 0.1);

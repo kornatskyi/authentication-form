@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Dispatch } from 'react'
-import SignIn from './components/SignIn/SignIn'
-import SignUp from './components/SignUp/SignUp'
+import SignIn from './pages/SignIn/SignIn'
+import SignUp from './pages/SignUp/SignUp'
 import NavBar from './components/Navbar/NavBar'
 import { Switch, Route, useHistory, Redirect, withRouter } from 'react-router-dom'
 import { Home } from './pages/Home/Home'

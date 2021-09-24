@@ -97,3 +97,11 @@ input {
 .success {
   color: $success-color;
 }
+
+//Styles for disabled elements
+button:disabled,
+a:disabled,
+input:disabled {
+  cursor: default !important;
+  color: $disabled-color !important;
+}

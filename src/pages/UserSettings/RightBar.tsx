@@ -16,7 +16,6 @@ export default function RightBar(): ReactElement {
 
 function Profile(): ReactElement {
   const [isConfirmed, setIsConfirmed] = useState(true)
-
   const [errorMessage, setErrorMessage] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -61,18 +60,20 @@ function Profile(): ReactElement {
           setErrorMessage('')
           setSuccessMessage(res.data)
         }
-        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
         setSuccessMessage('')
         setErrorMessage(err.response.statusText)
+      })
+      .finally(() => {
         setIsLoading(false)
       })
   }
 
   const handleConfirmationLinkRequest = (e: any) => {
     e.preventDefault()
+    setIsLoading(true)
     requestEmailConfirmationLink()
       .then((res) => {
         console.log(res.data)
@@ -80,11 +81,14 @@ function Profile(): ReactElement {
       .catch((err) => {
         console.log(err.response.statusText)
       })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const handleDeleteButton = (e: any) => {
     e.preventDefault()
-
+    setIsLoading(true)
     deleteUser()
       .then((res) => {
         console.log(res.data)
@@ -92,6 +96,9 @@ function Profile(): ReactElement {
       })
       .catch((err) => {
         console.log(err.response.statusText)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 

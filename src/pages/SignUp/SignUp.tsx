@@ -19,6 +19,8 @@ function SignUp(): ReactElement {
   // State for switching registration form to registration message block
   const [isRegistered, setIsRegistered] = useState(false)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   /** State that keeps confirmation status message after registration.
    * It will tell if sending confirmation message went wrong */
   const [confirmationLinkMessage, setConfirmationLinkMessage] = useState('')
@@ -44,6 +46,7 @@ function SignUp(): ReactElement {
   password.current = watch('password', '')
 
   const handleSubmitCallback = (data: RegistrationCredentials) => {
+    setIsLoading(true)
     signUp(data)
       .then((res) => {
         console.log(res.data)
@@ -53,6 +56,9 @@ function SignUp(): ReactElement {
       .catch((err) => {
         console.dir(err.response.statusText)
         setErrorStatusMessage(err.response.statusText)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
@@ -64,6 +70,9 @@ function SignUp(): ReactElement {
           <h1>You are registered!</h1>
           <img src={successSvg} alt="success" />
         </div>
+        <h2>
+          Now you can <Link to="/signin">Log In</Link>
+        </h2>
         <p>{confirmationLinkMessage}</p>
       </div>
     )
@@ -82,7 +91,7 @@ function SignUp(): ReactElement {
           {displayFormError(errors.password?.message)}
           <input {...register('repeatPassword', repeatPasswordValidation(password))} type="password" className="password" placeholder="Repeat password" />
           {displayFormError(errors.repeatPassword?.message)}
-          <input type="submit" className="button" value="Sign Up" />
+          <input type="submit" disabled={isLoading} className="button" value="Sign Up" />
           <p style={{ color: 'red' }}>{errorStatusMessage}</p>
         </form>
 

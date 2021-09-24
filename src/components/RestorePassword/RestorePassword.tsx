@@ -1,25 +1,10 @@
-import React, {
-  Dispatch,
-  ReactElement,
-  useContext,
-  useRef,
-  useState,
-} from 'react'
+import React, { ReactElement, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { restorePassword, signIn } from '../../apiCalls'
+import { restorePassword } from '../../apiCalls'
 import { RestorePasswordCredentials } from '../../utils/interfaces'
-import { AppContext } from '../../App'
 
 export default function RestorePassword() {
-  const [errorClass, setErrorClass] = useState('')
-  const [wrongCredentialsMessage, setWrongCredentialsMessage] = useState(
-    (() => <p></p>)()
-  )
-  const history = useHistory()
-
-  const [isChanged, setIsChanged] = useState(false)
-
   const {
     register,
     handleSubmit,
@@ -49,20 +34,14 @@ export default function RestorePassword() {
           restorePassword(data.password, token)
             .then((res) => {
               if (res.status === 200) {
-                setIsChanged(true)
                 console.log('Password has been reset')
               } else {
-                setIsChanged(false)
-
                 console.log('Status ', res.status)
 
                 console.log('Something went wrong')
               }
             })
             .catch((err) => {
-              setWrongCredentialsMessage(
-                (() => <p className="error">Wrong email or password</p>)()
-              )
               console.log(err)
               console.log(err.message)
 
@@ -91,8 +70,7 @@ export default function RestorePassword() {
               value: 30,
               message: 'Field length should be less then 30 chars!',
             },
-            validate: (value) =>
-              value === password.current || 'The passwords do not match',
+            validate: (value) => value === password.current || 'The passwords do not match',
           })}
           type="password"
           className="password"
@@ -100,11 +78,7 @@ export default function RestorePassword() {
         />
         {displayFormError(errors.repeatPassword?.message)}
 
-        <input
-          className={`${errorClass} button`}
-          type="submit"
-          value="Send reset message"
-        />
+        <input className="button" type="submit" value="Send reset message" />
       </form>
 
       <div className="form-footer"></div>
