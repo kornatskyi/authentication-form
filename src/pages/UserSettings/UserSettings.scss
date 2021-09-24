@@ -42,34 +42,68 @@
     .profileContainer {
       margin: 20px;
 
-      div {
-        width: 100%;
-        margin-bottom: 10px;
-
-        img {
-          width: 200px;
-          height: 200px;
-          border-radius: 50%;
-          border: $container-border;
-        }
+      form {
+        display: flex;
+        flex-direction: column;
 
         input {
           width: 100%;
           font-size: $normal-font;
+          margin: 10px 0;
+        }
+
+        .warning {
+          color: $warning-color;
+          font-size: $normal-font;
+
+          button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            color: #1a0dab;
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+            &:active {
+              color: red;
+              text-decoration: underline;
+            }
+          }
         }
 
         .update {
           background-color: $success-color;
           color: $color1;
-        }
-
-        .delete {
-          background-color: rgb(211, 211, 211);
-          color: #da3633;
+          width: 120px;
 
           &:hover {
-            background-color: #f85149;
+            background-color: rgb(0, 181, 0);
           }
+        }
+      }
+
+      .form-footer {
+        width: 100%;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+
+        button {
+          display: flex;
+        }
+      }
+
+      .delete {
+        background-color: rgb(211, 211, 211);
+        color: #da3633;
+        width: 120px;
+        display: flex;
+
+        &:hover {
+          background-color: #f85149;
         }
       }
     }

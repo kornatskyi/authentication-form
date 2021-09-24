@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { LoginCredentials, RegistrationCredentials } from './utils/interfaces'
+import { LoginCredentials, RegistrationCredentials, UpdatingCredentials } from './utils/interfaces'
 
 export const authorize = async () => {
   const config: AxiosRequestConfig = {
@@ -74,6 +74,15 @@ export const restorePassword = (password: string, token: string) => {
       password: password,
       token: token,
     },
+    withCredentials: true,
+  }
+  return axios(config)
+}
+export const updateCredentials = (credentials: UpdatingCredentials) => {
+  const config: AxiosRequestConfig = {
+    method: 'put',
+    url: process.env.API_URL + '/update',
+    data: credentials,
     withCredentials: true,
   }
   return axios(config)

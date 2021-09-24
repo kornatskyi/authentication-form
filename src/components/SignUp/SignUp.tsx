@@ -10,6 +10,7 @@ import { RegistrationCredentials } from '../../utils/interfaces'
 import './SignUp.scss'
 import '../../styles/FormContainer.scss'
 import successSvg from '../../assets/images/icons/success.svg'
+import { emailValidation, nameValidation, passwordValidation, repeatPasswordValidation } from '../../utils/registrationInputValidation'
 
 //TODO: Block on clicking register button many times
 //TODO: Resend confirmation link button
@@ -39,39 +40,8 @@ function SignUp(): ReactElement {
     }
   }
   //Subscribe to password for checking passwords identity
-  const password = useRef({})
+  const password = useRef('')
   password.current = watch('password', '')
-
-  //Validation schemas
-  const emailValidation = {
-    required: { value: true, message: 'Input your email!' },
-    maxLength: {
-      value: 30,
-      message: 'Field length should be less then 254 chars!',
-    },
-  }
-  const nameValidation = {
-    required: { value: true, message: 'Choose your user name!' },
-    maxLength: {
-      value: 30,
-      message: 'Field length should be less then 30 chars!',
-    },
-  }
-  const passwordValidation = {
-    required: { value: true, message: 'Choose your password' },
-    maxLength: {
-      value: 30,
-      message: 'Field length should be less then 30 chars!',
-    },
-  }
-  const repeatPasswordValidation = {
-    required: { value: true, message: 'Repeat your password' },
-    maxLength: {
-      value: 30,
-      message: 'Field length should be less then 30 chars!',
-    },
-    validate: (value: string) => value === password.current || 'The passwords do not match',
-  }
 
   const handleSubmitCallback = (data: RegistrationCredentials) => {
     signUp(data)
@@ -104,13 +74,13 @@ function SignUp(): ReactElement {
           <h2>Create a new account</h2>
         </div>
         <form className="signUpForm" onSubmit={handleSubmit(handleSubmitCallback)}>
-          <input {...register('email', emailValidation)} type="email" placeholder="Email" />
+          <input {...register('email', emailValidation())} type="email" placeholder="Email" />
           {displayFormError(errors.email?.message)}
-          <input {...register('name', nameValidation)} type="text" placeholder="User name" />
+          <input {...register('name', nameValidation())} type="text" placeholder="User name" />
           {displayFormError(errors.name?.message)}
-          <input {...register('password', passwordValidation)} type="password" className="password" placeholder="Password" />
+          <input {...register('password', passwordValidation())} type="password" className="password" placeholder="Password" />
           {displayFormError(errors.password?.message)}
-          <input {...register('repeatPassword', repeatPasswordValidation)} type="password" className="password" placeholder="Repeat password" />
+          <input {...register('repeatPassword', repeatPasswordValidation(password))} type="password" className="password" placeholder="Repeat password" />
           {displayFormError(errors.repeatPassword?.message)}
           <input type="submit" className="button" value="Sign Up" />
           <p style={{ color: 'red' }}>{errorStatusMessage}</p>

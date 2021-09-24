@@ -72,6 +72,12 @@
     }
   }
 
+  .form-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .error {
     color: $error;
     width: 100%;

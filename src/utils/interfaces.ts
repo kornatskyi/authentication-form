@@ -14,3 +14,10 @@ export interface RestorePasswordCredentials {
   password: string
   repeatPassword: string
 }
+
+export interface UpdatingCredentials {
+  email: string
+  name: string
+  password: string
+  repeatPassword: string
+}
