@@ -7,6 +7,7 @@ export default function UserSettings(): ReactElement {
     <div className="userSettingsContainer">
       <div className="leftBar">
         <button className="active">Profile</button>
+        <button className="">Some other tabs</button>
       </div>
       <RightBar />
     </div>

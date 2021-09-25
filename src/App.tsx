@@ -46,6 +46,10 @@ function App() {
     authorize()
       .then((res) => {
         if (res.status === 200) {
+          setUserData({
+            email: res.data.email,
+            name: res.data.name,
+          })
           setIsAuthorized(true)
           console.log('Authorized')
         }

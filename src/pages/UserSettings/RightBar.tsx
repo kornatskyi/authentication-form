@@ -1,10 +1,11 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+import React, { ReactElement, useContext, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { RegistrationCredentials } from '../../utils/interfaces'
 import { emailValidation, nameValidation, passwordValidation, repeatPasswordValidation } from '../../utils/updateInputValidation'
 import { deleteUser, isEmailConfirmed, requestEmailConfirmationLink, signUp, updateCredentials } from '../../apiCalls'
 import LoadingElement from '../../components/LoadingElement/LoadingElement'
+import { AppContext } from '../../App'
 
 export default function RightBar(): ReactElement {
   return (
@@ -19,6 +20,8 @@ function Profile(): ReactElement {
   const [errorMessage, setErrorMessage] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  const { userData } = useContext(AppContext)
 
   useEffect(() => {
     isEmailConfirmed()
@@ -109,7 +112,7 @@ function Profile(): ReactElement {
       </div>
       <form className="signUpForm" onSubmit={handleSubmit(handleSubmitCallback)}>
         <h4>Email: </h4>
-        <input {...register('email', emailValidation())} type="email" placeholder="Email" />
+        <input {...register('email', emailValidation())} type="email" placeholder={userData.email} />
         {isConfirmed ? (
           <></>
         ) : (
@@ -119,7 +122,7 @@ function Profile(): ReactElement {
         )}
         {displayFormError(errors.email?.message)}
         <h4>User name: </h4>
-        <input {...register('name', nameValidation())} type="text" placeholder="User name" />
+        <input {...register('name', nameValidation())} type="text" placeholder={userData.name} />
         {displayFormError(errors.name?.message)}
         <h4>Password:</h4>
         <input {...register('password', passwordValidation())} type="password" className="password" placeholder="Password" />

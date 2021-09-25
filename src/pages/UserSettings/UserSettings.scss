@@ -13,8 +13,9 @@
     button {
       text-align: start;
       @include h4;
-      padding: 5px;
 
+      height: 40px;
+      width: 100%;
       margin-bottom: 15px;
 
       &.active {
@@ -108,6 +109,19 @@
           color: $light-color;
         }
       }
+    }
+  }
+}
+
+@include mdDown {
+  .userSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .leftBar {
+      margin-left: 10px;
+      width: 70%;
     }
   }
 }
