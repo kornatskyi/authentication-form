@@ -52,15 +52,15 @@ button {
 
   &:focus-visible {
     outline: none;
-    box-shadow: inset 0 0 0 2px $color04;
+    box-shadow: inset 0 0 0 2px $grey-color;
   }
 
   &:active {
-    background-color: $color09;
+    background-color: $grey-color;
   }
 
   &:hover {
-    box-shadow: inset 0 0 0 2px $color04;
+    box-shadow: inset 0 0 0 2px $grey-color;
   }
 }
 
@@ -74,15 +74,15 @@ input {
 
   &:focus-visible {
     outline: none;
-    box-shadow: inset 0 0 0 2px $color04;
+    box-shadow: inset 0 0 0 2px $grey-color;
   }
 
   &:active {
-    background-color: $color09;
+    background-color: $grey-color;
   }
 
   &:hover {
-    box-shadow: inset 0 0 0 2px $color04;
+    box-shadow: inset 0 0 0 2px $grey-color;
   }
 
   &[type='submit'] {
@@ -91,7 +91,7 @@ input {
 }
 
 .error {
-  color: $error;
+  color: $error-color;
 }
 
 .success {

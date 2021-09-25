@@ -75,12 +75,13 @@
         }
 
         .update {
-          background-color: $success-color;
-          color: $color1;
+          background-color: $main-color;
+          color: $text-light;
           width: 120px;
 
           &:hover {
-            background-color: rgb(0, 181, 0);
+            background-color: $secondary-color;
+            color: $text-dark;
           }
         }
       }
@@ -98,12 +99,13 @@
 
       .delete {
         background-color: rgb(211, 211, 211);
-        color: #da3633;
+        color: #d31410;
         width: 120px;
         display: flex;
 
         &:hover {
-          background-color: #f85149;
+          background-color: #ff2216;
+          color: $light-color;
         }
       }
     }

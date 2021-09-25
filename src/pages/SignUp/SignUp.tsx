@@ -71,7 +71,7 @@ function SignUp(): ReactElement {
           <img src={successSvg} alt="success" />
         </div>
         <h2>
-          Now you can <Link to="/signin">Log In</Link>
+          Now you can <Link to="/signIn">Log In</Link>
         </h2>
         <p>{confirmationLinkMessage}</p>
       </div>
@@ -97,7 +97,7 @@ function SignUp(): ReactElement {
 
         <div className="form-footer">
           <p>
-            Already have an account? <Link to="/signin">Log In</Link>
+            Already have an account? <Link to="/signIn">Log In</Link>
           </p>
         </div>
       </div>

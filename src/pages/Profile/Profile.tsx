@@ -35,7 +35,7 @@ const UserRelatedContent = (props: Props) => {
   const signOut = () => {
     const config: AxiosRequestConfig = {
       method: 'get',
-      url: process.env.API_URL + '/signout',
+      url: process.env.API_URL + '/signOut',
       withCredentials: true,
     }
 

@@ -72,7 +72,7 @@ export default function SignIn(): ReactElement {
       .catch((err) => {
         setWrongCredentialsMessage((() => <p className="error">Wrong email or password</p>)())
         console.log(err)
-        console.log('Error when signing in')
+        console.log('Error when signIng in')
       })
       .finally(() => {
         setIsLoading(false)
@@ -145,7 +145,7 @@ export default function SignIn(): ReactElement {
 
         <div className="form-footer">
           <p>
-            Don&apos;t have an account? <Link to="/signup">Sign up</Link>
+            Don&apos;t have an account? <Link to="/signUp">Sign up</Link>
           </p>
 
           <button disabled={isLoading} className="forgotPassword" onClick={handleForgotPasswordButton}>

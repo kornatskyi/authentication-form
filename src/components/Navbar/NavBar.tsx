@@ -25,13 +25,7 @@ function NavBar(props: Props) {
         setToggle('in')
       }}
     >
-      <div
-        className="burgerContainer"
-        role="button"
-        tabIndex={0}
-        onClick={() => setToggle(toggle === 'out' ? 'in' : 'out')}
-        onKeyDown={() => setToggle(toggle === 'out' ? 'in' : 'out')}
-      >
+      <div className="burgerContainer" role="button" tabIndex={0} onClick={() => setToggle(toggle === 'out' ? 'in' : 'out')} onKeyDown={() => setToggle(toggle === 'out' ? 'in' : 'out')}>
         <img src={burger} className="burger" alt="" />
       </div>
 
@@ -44,8 +38,8 @@ function NavBar(props: Props) {
             <UserButton />
           ) : (
             <>
-              <Link to="/signin">Log In</Link>
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/signIn">Log In</Link>
+              <Link to="/signUp">Sign Up</Link>
             </>
           )}
         </div>

@@ -105,7 +105,7 @@ function Profile(): ReactElement {
   return (
     <div className="profileContainer">
       <div className="avatar">
-        <h2>User profile setting</h2>
+        <h2>User profile settings</h2>
       </div>
       <form className="signUpForm" onSubmit={handleSubmit(handleSubmitCallback)}>
         <h4>Email: </h4>

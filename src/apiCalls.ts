@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { LoginCredentials, RegistrationCredentials, UpdatingCredentials } from './utils/interfaces'
 
 export const authorize = async () => {
@@ -7,36 +7,32 @@ export const authorize = async () => {
     url: process.env.API_URL + '/authorize',
     withCredentials: true,
   }
-
   return axios(config)
 }
 
-export const signout = async () => {
+export const signOut = async () => {
   const config: AxiosRequestConfig = {
     method: 'get',
-    url: process.env.API_URL + '/signout',
+    url: process.env.API_URL + '/signOut',
     withCredentials: true,
   }
-
   return axios(config)
 }
 
 export const signIn = async (data: LoginCredentials) => {
   const config: AxiosRequestConfig = {
     method: 'post',
-    url: process.env.API_URL + '/signin',
+    url: process.env.API_URL + '/signIn',
     data: data,
     withCredentials: true,
   }
-
   return axios(config)
 }
 
 export const signUp = (registrationCredentials: RegistrationCredentials) => {
   const config: AxiosRequestConfig = {
     method: 'post',
-    url: process.env.API_URL + '/signup',
-
+    url: process.env.API_URL + '/signUp',
     data: registrationCredentials,
     withCredentials: true,
   }
@@ -47,7 +43,6 @@ export const isEmailConfirmed = () => {
   const config: AxiosRequestConfig = {
     method: 'post',
     url: process.env.API_URL + '/isconfirmed',
-
     withCredentials: true,
   }
   return axios(config)
@@ -57,12 +52,12 @@ export const requestEmailConfirmationLink = () => {
   const config: AxiosRequestConfig = {
     method: 'get',
     url: process.env.API_URL + '/request-confirmation-link',
-
     withCredentials: true,
   }
   return axios(config)
 }
 
+//Request link for restoring password
 export const forgotPassword = (email: string) => {
   const config: AxiosRequestConfig = {
     method: 'post',
@@ -76,6 +71,7 @@ export const forgotPassword = (email: string) => {
   return axios(config)
 }
 
+//Sending token and new password
 export const restorePassword = (password: string, token: string) => {
   const config: AxiosRequestConfig = {
     method: 'post',

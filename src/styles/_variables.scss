@@ -11,11 +11,19 @@ $color2: #000033;
 $color20: #00004d;
 $color29: #e6e6ff;
 
+$main-color: #0094ff;
+$secondary-color: #00b5ff;
+
+$grey-color: rgb(209, 209, 209);
+
+$light-color: white;
+$dark-color: black;
+
 $success-color: #057642;
 
 $warning-color: rgb(197, 163, 27);
 
-$error: red;
+$error-color: red;
 
 $disabled-color: grey;
 
@@ -32,4 +40,5 @@ $input-border: 1px solid $color0;
 $container-background: #ffffff;
 $input-border-radius: 0.4em;
 $input-box-shadow: inset 0 0 0 1px $color06;
+$input-focus-box-shadow: inset 0 0 0 1px $secondary-color;
 $box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08), 0px 1px 2px rgba(0, 0, 0, 0.1);

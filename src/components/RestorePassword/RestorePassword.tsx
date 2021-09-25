@@ -83,7 +83,7 @@ export default function RestorePassword() {
 
       <div className="form-footer"></div>
       <p>
-        Remember password <Link to="/signin">Sign In</Link>
+        Remember password <Link to="/signIn">Sign In</Link>
       </p>
     </div>
   )

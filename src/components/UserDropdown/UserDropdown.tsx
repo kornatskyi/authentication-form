@@ -1,14 +1,14 @@
 import React, { ReactElement, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './UserDropdown.scss'
-import { signout } from '../../apiCalls'
+import { signOut } from '../../apiCalls'
 import { AppContext } from '../../App'
 
 export default function UserDropdown(): ReactElement {
   const { setIsAuthorized } = useContext(AppContext)
 
   const handleLogOut = () => {
-    signout()
+    signOut()
       .then(() => {
         console.log('You logged out!')
 
