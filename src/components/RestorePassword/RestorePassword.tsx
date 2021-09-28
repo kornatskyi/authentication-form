@@ -1,7 +1,7 @@
-import React, { ReactElement, useRef, useState } from 'react'
+import React, { ReactElement, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory, useParams } from 'react-router-dom'
-import { restorePassword } from '../../apiCalls'
+import { Link, useParams } from 'react-router-dom'
+import { restorePassword } from '../../api'
 import { RestorePasswordCredentials } from '../../utils/interfaces'
 
 export default function RestorePassword() {

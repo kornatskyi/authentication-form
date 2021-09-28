@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './UserDropdown.scss'
-import { signOut } from '../../apiCalls'
+import { signOut } from '../../api'
 import { AppContext } from '../../App'
 
 export default function UserDropdown(): ReactElement {

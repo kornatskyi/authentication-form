@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { RegistrationCredentials } from '../../utils/interfaces'
 import { emailValidation, nameValidation, passwordValidation, repeatPasswordValidation } from '../../utils/updateInputValidation'
-import { deleteUser, isEmailConfirmed, requestEmailConfirmationLink, signUp, updateCredentials } from '../../apiCalls'
+import { deleteUser, isEmailConfirmed, requestEmailConfirmationLink, updateCredentials } from '../../api'
 import LoadingElement from '../../components/LoadingElement/LoadingElement'
 import { AppContext } from '../../App'
 
@@ -74,7 +74,7 @@ function Profile(): ReactElement {
       })
   }
 
-  const handleConfirmationLinkRequest = (e: any) => {
+  const handleConfirmationLinkRequest = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setIsLoading(true)
     requestEmailConfirmationLink()
@@ -89,7 +89,7 @@ function Profile(): ReactElement {
       })
   }
 
-  const handleDeleteButton = (e: any) => {
+  const handleDeleteButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setIsLoading(true)
     deleteUser()

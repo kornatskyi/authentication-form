@@ -1,13 +1,12 @@
-import React, { Dispatch, ReactElement, useContext, useState } from 'react'
+import React, { ReactElement, useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
 import './SignIn.scss'
-import { forgotPassword, signIn } from '../../apiCalls'
+import { forgotPassword, signIn } from '../../api'
 import { LoginCredentials } from '../../utils/interfaces'
 import { AppContext } from '../../App'
 
 export default function SignIn(): ReactElement {
-  const [errorClass, setErrorClass] = useState('')
   const [wrongCredentialsMessage, setWrongCredentialsMessage] = useState((() => <p></p>)())
   const [isLoading, setIsLoading] = useState(false)
 
@@ -18,7 +17,7 @@ export default function SignIn(): ReactElement {
 
   // Used for setting context value of weather user authorized or not. Set it after
   // successful login
-  const { isAuthorized, setIsAuthorized } = useContext(AppContext)
+  const { setIsAuthorized } = useContext(AppContext)
 
   //React Hook Form methods
   const {
@@ -99,6 +98,7 @@ export default function SignIn(): ReactElement {
       forgotPassword(getValues('email'))
         .then((res) => {
           //If request is successful setting element state for displaying appropriate message
+          console.log(res.data)
           setIsResetRequestSent(true)
         })
         .catch((err) => {
@@ -134,13 +134,13 @@ export default function SignIn(): ReactElement {
           <h2>Login to your account</h2>
         </div>
         <form className="signInForm" onSubmit={handleSubmit(handleSubmitCallback)}>
-          <input className={`${errorClass} `} {...register('email', emailValidation)} type="email" placeholder="Email" />
+          <input {...register('email', emailValidation)} type="email" placeholder="Email" />
           {displayFormError(errors.email?.message)}
 
-          <input className={`${errorClass} password`} {...register('password', passwordValidation)} type="password" placeholder="Password" />
+          <input className={` password`} {...register('password', passwordValidation)} type="password" placeholder="Password" />
           {displayFormError(errors.password?.message)}
           {wrongCredentialsMessage}
-          <input className={`${errorClass} button`} type="submit" disabled={isLoading} value="Sign In" />
+          <input className={` button`} type="submit" disabled={isLoading} value="Sign In" />
         </form>
 
         <div className="form-footer">
