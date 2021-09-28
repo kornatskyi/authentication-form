@@ -5,6 +5,7 @@ import './SignIn.scss'
 import { forgotPassword, signIn } from '../../api'
 import { LoginCredentials } from '../../utils/interfaces'
 import { AppContext } from '../../App'
+import { passwordValidation, emailValidation } from '../../utils/authorizationInputValidation'
 
 export default function SignIn(): ReactElement {
   const [wrongCredentialsMessage, setWrongCredentialsMessage] = useState((() => <p></p>)())
@@ -33,23 +34,6 @@ export default function SignIn(): ReactElement {
     if (message) {
       return <p className="error">{message}</p>
     }
-  }
-
-  //Validation schemas
-  const emailValidation = {
-    required: { value: true, message: 'Input your email!' },
-    maxLength: {
-      value: 30,
-      message: 'Field length should be less then 254 chars!',
-    },
-  }
-
-  const passwordValidation = {
-    required: { value: true, message: 'Choose your password' },
-    maxLength: {
-      value: 30,
-      message: 'Field length should be less then 30 chars!',
-    },
   }
 
   const handleSubmitCallback = (data: LoginCredentials) => {
