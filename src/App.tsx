@@ -73,7 +73,7 @@ function App() {
       <AppContext.Provider value={{ isAuthorized, setIsAuthorized, userData, setUserData }}>
         <div className="appContainer">
           <header>
-            <NavBar setIsAuthorized={setIsAuthorized} isAuthorized={isAuthorized} pageNames={['Home', 'User page', 'Sign In', 'Sign Up']} />
+            <NavBar />
           </header>
           <main>
             <Switch>
@@ -84,7 +84,7 @@ function App() {
 
               <Route exact path="/signUp" component={SignUp} />
 
-              <Route exact path={['/', '/home']} component={() => <Home isAuthorized={isAuthorized}></Home>} />
+              <Route exact path={['/', '/home']} component={() => <Home></Home>} />
 
               <Route component={Page404}></Route>
             </Switch>

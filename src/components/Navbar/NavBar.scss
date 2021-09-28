@@ -3,7 +3,7 @@
 //For small screens
 @include mdDown {
   .navbar {
-    z-index: 99999;
+    z-index: 999;
     background-color: $container-background;
     border-bottom: $container-border;
     box-shadow: $box-shadow;
@@ -36,6 +36,17 @@
       flex-direction: column;
       // transform       : translateY(-100%);
       align-items: center;
+
+      .rightLinks {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+
+        .userDropdownContainer {
+          position: fixed;
+          z-index: 9999999;
+        }
+      }
     }
 
     &.in {

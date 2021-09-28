@@ -1,21 +1,13 @@
-import React, { Dispatch, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import './NavBar.scss'
 import burger from '../../assets/images/icons/burger.svg'
 import UserButton from '../UserButton/UserButton'
 import { AppContext } from '../../App'
 
-interface Props {
-  pageNames: Array<string>
-  isAuthorized: boolean
-  setIsAuthorized: Dispatch<boolean>
-}
-
-function NavBar(props: Props) {
-  const { pageNames, setIsAuthorized } = props
+function NavBar() {
   const [toggle, setToggle] = useState('')
-
+  // Depending authorized user or not display appropriate buttons in the right corner
   const { isAuthorized } = useContext(AppContext)
 
   return (
