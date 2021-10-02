@@ -54,8 +54,8 @@ function SignUp(): ReactElement {
         setConfirmationLinkMessage(res.data)
       })
       .catch((err) => {
-        console.dir(err.response.statusText)
-        setErrorStatusMessage(err.response.statusText)
+        console.dir(err.response?.statusText)
+        setErrorStatusMessage(err.response?.statusText)
       })
       .finally(() => {
         setIsLoading(false)

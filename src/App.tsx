@@ -58,7 +58,7 @@ function App() {
       .catch((err) => {
         setIsAuthorized(false)
         console.log(err)
-        console.log(err.response.statusMessage)
+        console.log(err.response?.statusMessage)
         console.log('Not authorized')
       })
       .finally(() => {
