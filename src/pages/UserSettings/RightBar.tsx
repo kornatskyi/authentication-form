@@ -34,7 +34,7 @@ function Profile(): ReactElement {
       })
       .catch((err) => {
         console.error('Something went wrong!')
-        console.log(err.response.statusText)
+        console.log(err.response?.statusText)
       })
   }, [])
 
@@ -67,7 +67,7 @@ function Profile(): ReactElement {
       .catch((err) => {
         console.log(err)
         setSuccessMessage('')
-        setErrorMessage(err.response.statusText)
+        setErrorMessage(err.response?.statusText)
       })
       .finally(() => {
         setIsLoading(false)
@@ -82,7 +82,7 @@ function Profile(): ReactElement {
         console.log(res.data)
       })
       .catch((err) => {
-        console.log(err.response.statusText)
+        console.log(err.response?.statusText)
       })
       .finally(() => {
         setIsLoading(false)
@@ -98,7 +98,7 @@ function Profile(): ReactElement {
         window.location.reload()
       })
       .catch((err) => {
-        console.log(err.response.statusText)
+        console.log(err.response?.statusText)
       })
       .finally(() => {
         setIsLoading(false)
