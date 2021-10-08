@@ -12,6 +12,6 @@ COPY . .
 
 RUN  npm run build
 
-EXPOSE 3000
+EXPOSE 5000/tcp
 
-CMD server build
+CMD npm start

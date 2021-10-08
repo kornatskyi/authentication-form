@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-require('dotenv').config({ path: './config/env/.env.dev' })
+require('dotenv').config({ path: '.env.dev' })
 
 module.exports = {
   mode: 'development',
@@ -17,6 +17,7 @@ module.exports = {
     }, //makes browser keep components after refresh when using react router
     clientLogLevel: 'none',
   },
+
   plugins: [
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({

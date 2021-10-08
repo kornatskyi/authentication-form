@@ -37,8 +37,6 @@ function App() {
     setUserData: setUserData,
   }
 
-  console.log(process.env)
-
   //Context initialization
   AppContext = React.createContext(contextValue)
 
@@ -47,8 +45,6 @@ function App() {
     setIsLoading(true)
     authorize()
       .then((res) => {
-        console.log(res)
-
         if (res.status === 200) {
           setUserData({
             email: res.data.email,
