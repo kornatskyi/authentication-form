@@ -45,6 +45,8 @@ function App() {
     setIsLoading(true)
     authorize()
       .then((res) => {
+        console.log(res)
+
         if (res.status === 200) {
           setUserData({
             email: res.data.email,
