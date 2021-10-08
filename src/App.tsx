@@ -37,6 +37,8 @@ function App() {
     setUserData: setUserData,
   }
 
+  console.log(process.env)
+
   //Context initialization
   AppContext = React.createContext(contextValue)
 
