@@ -8,7 +8,8 @@
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:prod": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "dotenv-webpack": "^7.0.3",
+    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.15.3",
@@ -32,20 +34,20 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@hookform/resolvers": "^2.8.1",
-    "@svgr/webpack": "^5.5.0",
-    "@types/node": "^12.0.0",
-    "@types/react-router": "^5.1.16",
-    "@types/react-router-dom": "^5.1.9",
     "@babel/core": "^7.12.16",
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.12.16",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.12.16",
     "@babel/runtime": "^7.13.10",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@hookform/resolvers": "^2.8.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
+    "@svgr/webpack": "^3.1.0",
+    "@types/node": "^12.0.0",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "@types/react-router": "^5.1.16",
+    "@types/react-router-dom": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "babel-loader": "^8.2.2",
