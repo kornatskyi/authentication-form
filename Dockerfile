@@ -12,4 +12,5 @@ RUN ["npm", "run", "build"]
 
 EXPOSE 5000/tcp
 
-CMD npm run start:prod
+# CMD npm run start:prod
+CMD npm run start
