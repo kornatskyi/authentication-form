@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { RegistrationCredentials } from '../../utils/interfaces'
 import { emailValidation, nameValidation, passwordValidation, repeatPasswordValidation } from '../../utils/updateInputValidation'
-import { deleteUser, isEmailConfirmed, requestEmailConfirmationLink, updateCredentials } from '../../api'
+import { deleteUser, getUserInfo, isEmailConfirmed, requestEmailConfirmationLink, updateCredentials } from '../../api'
 import LoadingElement from '../../components/LoadingElement/LoadingElement'
 import { AppContext } from '../../App'
 
@@ -21,7 +21,17 @@ function Profile(): ReactElement {
   const [successMessage, setSuccessMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const { userData } = useContext(AppContext)
+  const [userData, setUserData] = useState({ email: 'Loading...', name: 'Loading...' })
+
+  useEffect(() => {
+    getUserInfo()
+      .then((res) => {
+        setUserData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   useEffect(() => {
     isEmailConfirmed()

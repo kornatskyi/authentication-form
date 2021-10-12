@@ -94,6 +94,15 @@ export const updateCredentials = (credentials: UpdatingCredentials) => {
   return axios(config)
 }
 
+export const getUserInfo = () => {
+  const config: AxiosRequestConfig = {
+    method: 'get',
+    url: process.env.API_HOST + '/user-info',
+    withCredentials: true,
+  }
+  return axios(config)
+}
+
 export const deleteUser = () => {
   const config: AxiosRequestConfig = {
     method: 'delete',
