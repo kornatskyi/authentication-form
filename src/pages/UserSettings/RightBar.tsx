@@ -69,6 +69,8 @@ function Profile(): ReactElement {
     setIsLoading(true)
     updateCredentials(data)
       .then((res) => {
+        console.log('Cookies', res.headers)
+
         if (res.status === 200) {
           setErrorMessage('')
           setSuccessMessage(res.data)

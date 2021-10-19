@@ -40,6 +40,7 @@ export default function SignIn(): ReactElement {
     setIsLoading(true)
     signIn(data)
       .then((res) => {
+        console.log('Cookies', res.headers)
         if (res.status === 200) {
           setIsAuthorized(true)
           console.log('You are Signed In')
